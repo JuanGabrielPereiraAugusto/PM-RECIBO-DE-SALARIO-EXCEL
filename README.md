@@ -19,11 +19,12 @@ Planilha que monta um **recibo de pagamento (holerite)** a partir de um **cadast
 
 ## 🔎 Busca dos dados com PROCV
 
-O nome do funcionário é digitado no recibo e o resto vem do cadastro:
+O nome do funcionário é digitado no recibo, e o salário, a data de admissão e o CBO vêm do cadastro. O último argumento `0` exige **correspondência exata** do nome:
 
 ```excel
-Salário:           =PROCV(C8; Table1!B1:F21; 2; 1)
-Data de admissão:  =PROCV(C8; Table1!B1:F21; 3; 1)
+Salário:           =PROCV(C8; Table1!B1:F21; 2; 0)
+Data de admissão:  =PROCV(C8; Table1!B1:F21; 3; 0)
+CBO:               =PROCV(C8; Table1!B1:F21; 4; 0)
 ```
 
 ---
@@ -32,17 +33,17 @@ Data de admissão:  =PROCV(C8; Table1!B1:F21; 3; 1)
 
 | Descrição | Referência | Fórmula | Valor |
 |---|:---:|---|---:|
-| Salário do mês | 30 dias | `=D8` | R$ 3.800,00 |
-| FGTS | 8% | `=D8*0,08` | R$ 304,00 |
-| Vale-transporte | 6% | `=D8*0,06` | R$ 228,00 |
-| IRRF | 22,5% | `=D8*0,225` | R$ 855,00 |
-| Desconto INSS | 8% | `=D8*0,08` | R$ 304,00 |
+| Salário do mês | 30 dias | `=D8` | R$ 4.000,00 |
+| FGTS | 8% | `=D8*0,08` | R$ 320,00 |
+| Vale-transporte | 6% | `=D8*0,06` | R$ 240,00 |
+| IRRF | 22,5% | `=D8*0,225` | R$ 900,00 |
+| Desconto INSS | 8% | `=D8*0,08` | R$ 320,00 |
 
 | Totais | Fórmula | Valor |
 |---|---|---:|
-| **Total de vencimentos** | `=SOMA(I15:I24)` | R$ 3.800,00 |
-| **Total de descontos** | `=SOMA(K15:K19)` | R$ 1.691,00 |
-| **Valor líquido** | `=I26-K26` | **R$ 2.109,00** |
+| **Total de vencimentos** | `=SOMA(I15:I24)` | R$ 4.000,00 |
+| **Total de descontos** | `=SOMA(K15:K19)` | R$ 1.780,00 |
+| **Valor líquido** | `=I26-K26` | **R$ 2.220,00** |
 
 No rodapé, o recibo também calcula o **salário-base**, o **salário de contribuição do INSS**, as **bases de cálculo do FGTS e do IRRF** e o **FGTS do mês**.
 
